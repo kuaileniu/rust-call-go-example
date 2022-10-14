@@ -7,6 +7,7 @@ import (
 	"math"
 	"sort"
 	"sync"
+	"testgo/feng"
 )
 
 var count int
@@ -24,6 +25,7 @@ func Cosine(x float64) float64 {
 
 //export Sort
 func Sort(vals []int) {
+	feng.MainLog()
 	sort.Ints(vals)
 }
 
