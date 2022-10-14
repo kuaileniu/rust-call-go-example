@@ -7,3 +7,7 @@ The example comes from [Calling Go Functions from Other Languages](https://githu
 
  + Rust tested on v1.26.0
  + Go tested on v1.10
+
+## run
+
+cargo clean && CARGO_NET_GIT_FETCH_WITH_CLI=true  cargo run
