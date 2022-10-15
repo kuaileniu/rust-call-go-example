@@ -1,6 +1,6 @@
-use std::process::Command;
+use std::env;
+use std::process::{Command};
 use std::thread::sleep;
-use std::{env};
 use std::time::Duration;
 
 fn main() {
@@ -11,10 +11,22 @@ fn main() {
     //     .arg("awesome.go")
     //     .status().unwrap();
 
-    Command::new("python3").arg("gobuild.py").status().unwrap();
+    let mut local_commond = Command::new("python3");
+    local_commond
+        .arg("gobuild.py")
+        .arg(format!("-p={}", out_dir))
+        .arg("-n=libawesome.a");
 
     
-    sleep(Duration::from_secs(1));
+    match local_commond.output() {
+        Ok(out) => {
+            println!("python 脚本输出信息： {:?}", out);
+        }
+        Err(e) => {
+            println!("{:?}", e)
+        }
+    };
+   
+    sleep(Duration::from_secs(1)); // 没必要等一秒时间
     println!("cargo:rustc-link-search=native={}", out_dir);
 }
-
